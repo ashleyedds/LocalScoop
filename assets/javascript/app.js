@@ -1,6 +1,3 @@
-$(document).ready(function () {
-
-
   //Initialize map
   var map, infoWindow;
   function initMap() {
@@ -114,6 +111,3 @@ $(document).ready(function () {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   }
-
-
-});
