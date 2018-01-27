@@ -9,52 +9,63 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var userId;
+
+//add realtime listener
+$(document).ready(function(){
+firebase.auth().onAuthStateChanged(firebaseUser =>{
+  if(firebaseUser){
+      console.log(firebaseUser);
+      userId = firebaseUser.uid;
+      console.log(userId);
+      btnLogout.classList.remove("hide");
+  } else{
+      console.log("not logged in");  
+      btnLogout.classList.add("hide");
+  }
+});
+});
+
 
 //https://firebase.google.com/docs/auth/web/manage-users
+//user + userID 
+//var userId = firebase.auth().uid;
+//WHY IS THIS NOT TAKING MY USER ID? I KNOW IT HAS SOMETHING TO DO WITH GLOBAL SCOPE
+console.log(userId);
+var user = firebase.auth().currentUser;
+console.log(user);
 
 //create a variable to reference the database
-const dbRef = firebase.database().ref('recentUserPush');
-
-//user listener
-var user = firebase.auth().currentUser;
-
-//user functions
-
-function userFunctions(user) {
-  if(user){
-    //User is signed in
-  }
-  else{
-    //No User is signed in.
-    alert("You must sign in to submit")
-  }
-}
-
-
+const dbRef = firebase.database().ref('users/'+ userId + '/recentUserPush');
 
 //Capture button click
 $("#submitEmployee").on("click", submitEmployee);
 
+//user functions
 
 function submitEmployee() {
-var test = $("#employee-name").val().trim();
-console.log(test);
-  // var role;
-  // var rate;
-  // var startDate;
+  if(user != null){
+    var test = $("#employee-name").val().trim();
+    console.log(test);
+      // var role;
+      // var rate;
+      // var startDate;
 
-event.preventDefault();
+    event.preventDefault();
 
-dbRef.push({
-  employeeName : $("#employee-name").val().trim(),
-  role : $("#employeeRole").val().trim(),
-  rate : $("#employeeRate").val().trim(),
-  startDate : $("#startDate").val().trim(),
-  dateAdded: firebase.database.ServerValue.TIMESTAMP
-});
+    dbRef.push({
+      employeeName : $("#employee-name").val().trim(),
+      role : $("#employeeRole").val().trim(),
+      rate : $("#employeeRate").val().trim(),
+      startDate : $("#startDate").val().trim(),
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
 
-console.log("success");
-
+    console.log("success");
+  }
+  else{
+    alert("You must sign in to submit")
+  }
 }
 
 // Firebase watcher .on("child_added")
@@ -97,6 +108,8 @@ function createUserDiv(user) {
   
   return uDiv;
 }
+
+
 
 
 
