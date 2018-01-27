@@ -57,7 +57,9 @@
                 weatherDiv.addClass("card blue-grey lighten-2 z-depth-4");
                 weatherDiv.attr("id", "weather-card");
                 $("#weather-main").prepend(weatherDiv);
-                $("#weather-card").append("<span class='card-title'>Current temperature: " + response.main.temp + "&#8457</span>");
+                var icon = response.weather[0].icon;
+                var iconURL = "http://openweathermap.org/img/w/" + icon + ".png";
+                $("#weather-card").append("<span class='card-title'>Current temperature: " + response.main.temp + "&#8457</span><img src=" + iconURL + ">");
                 var cityName = response.name;
                 runQuerySearch(cityName);
             });
