@@ -10,73 +10,85 @@ var config = {
 firebase.initializeApp(config);
 
 var userId;
+var currentFirebaseUser;
+var dbRef;
 
 //add realtime listener
-$(document).ready(function(){
+
 firebase.auth().onAuthStateChanged(firebaseUser =>{
   if(firebaseUser){
-      console.log(firebaseUser);
-      userId = firebaseUser.uid;
-      console.log(userId);
-      btnLogout.classList.remove("hide");
-  } else{
+    userId = firebaseUser.uid;
+    currentFirebaseUser = firebaseUser;
+    console.log(currentFirebaseUser);
+    console.log(firebaseUser);
+    console.log(userId);
+    
+    btnLogout.classList.remove("hide");
+    //create a variable to reference the database
+    dbRef = firebase.database().ref('users/'+ userId);
+  
+  // Firebase watcher .on("child_added")
+    dbRef.on("child_added", function(snapshot) {
+      // Log everything that's coming out of snapshot
+      console.log(snapshot.val());
+      $("#full-member-list").append(createUserDiv(snapshot.val()));
+    }, function(err) {
+      // Handle errors
+      console.log("Error: ", err.code);
+    });
+  
+
+  
+  
+    } else{
       console.log("not logged in");  
       btnLogout.classList.add("hide");
   }
 });
-});
 
 
-//https://firebase.google.com/docs/auth/web/manage-users
-//user + userID 
-//var userId = firebase.auth().uid;
-//WHY IS THIS NOT TAKING MY USER ID? I KNOW IT HAS SOMETHING TO DO WITH GLOBAL SCOPE
-console.log(userId);
-var user = firebase.auth().currentUser;
-console.log(user);
+// console.log(currentFirebaseUser);
 
-//create a variable to reference the database
-const dbRef = firebase.database().ref('users/'+ userId + '/recentUserPush');
+
+// //https://firebase.google.com/docs/auth/web/manage-users
+// //user + userID 
+// //var userId = firebase.auth().uid;
+// //WHY IS THIS NOT TAKING MY USER ID? I KNOW IT HAS SOMETHING TO DO WITH GLOBAL SCOPE
+// console.log(userId);
+// var user = firebase.auth().currentUser;
+// console.log(user);
+
+
 
 //Capture button click
-$("#submitEmployee").on("click", submitEmployee);
+$("#submitEmployee").on("click", event => {
+  event.preventDefault();
+  
+  // var test = $("#employee-name").val().trim();
+  // console.log(test);
+    // var role;
+    // var rate;
+    // var startDate;
+
+  
+
+  dbRef.push({
+    employeeName : $("#employee-name").val().trim(),
+    role : $("#employeeRole").val().trim(),
+    rate : $("#employeeRate").val().trim(),
+    startDate : $("#startDate").val().trim(),
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
+  console.log("success");
+
+});
 
 //user functions
+ 
+ 
 
-function submitEmployee() {
-  if(user != null){
-    var test = $("#employee-name").val().trim();
-    console.log(test);
-      // var role;
-      // var rate;
-      // var startDate;
 
-    event.preventDefault();
-
-    dbRef.push({
-      employeeName : $("#employee-name").val().trim(),
-      role : $("#employeeRole").val().trim(),
-      rate : $("#employeeRate").val().trim(),
-      startDate : $("#startDate").val().trim(),
-      dateAdded: firebase.database.ServerValue.TIMESTAMP
-    });
-
-    console.log("success");
-  }
-  else{
-    alert("You must sign in to submit")
-  }
-}
-
-// Firebase watcher .on("child_added")
-dbRef.on("child_added", function(snapshot) {
-  // Log everything that's coming out of snapshot
-  console.log(snapshot.val());
-  $("#full-member-list").append(createUserDiv(snapshot.val()));
-}, function(err) {
-  // Handle errors
-  console.log("Error: ", err.code);
-});
 
 // dbRef.orderByChild('dateAdded').limitToLast(5).on('child_added',function(snapshot){
 //   // Set most recent user
