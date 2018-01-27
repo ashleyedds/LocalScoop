@@ -22,78 +22,78 @@ function getIceCream(initialLat, initialLng) {
 };
 
 //Initialize map
-var map, infoWindow;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8
-  });
-  infoWindow = new google.maps.InfoWindow;
+// var map, infoWindow;
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     center: { lat: -34.397, lng: 150.644 },
+//     zoom: 8
+//   });
+//   infoWindow = new google.maps.InfoWindow;
 
 
   //Determine current location, initial latitude/longitude
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
+  // if (navigator.geolocation) {
+  //   navigator.geolocation.getCurrentPosition(function (position) {
+  //     var pos = {
+  //       lat: position.coords.latitude,
+  //       lng: position.coords.longitude
+  //     };
 
-      console.log("Initial latitude: " + pos.lat);
-      console.log("Initial longitude: " + pos.lng);
+  //     console.log("Initial latitude: " + pos.lat);
+  //     console.log("Initial longitude: " + pos.lng);
 
-      var initialLat = pos.lat;
-      var initialLng = pos.lng;
+  //     var initialLat = pos.lat;
+  //     var initialLng = pos.lng;
 
-      getIceCream(initialLat, initialLng)
+  //     getIceCream(initialLat, initialLng)
 
 
       //Create marker for current location, make it draggable
-      var marker = new google.maps.Marker({
-        position: pos,
-        map: map,
-        draggable: true,
-      });
+      // var marker = new google.maps.Marker({
+      //   position: pos,
+      //   map: map,
+      //   draggable: true,
+      // });
 
 
 
       //Grab new longitude/latitude from moved marker
-      function markerCoords(markerobject) {
-        google.maps.event.addListener(markerobject, 'dragend', function (evt) {
-          infoWindow.setOptions({
-            content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
-          });
+      // function markerCoords(markerobject) {
+      //   google.maps.event.addListener(markerobject, 'dragend', function (evt) {
+      //     infoWindow.setOptions({
+      //       content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
+      //     });
 
-          console.log("New latitude: " + evt.latLng.lat());
-          console.log("New longitude: " + evt.latLng.lng());
+      //     console.log("New latitude: " + evt.latLng.lat());
+      //     console.log("New longitude: " + evt.latLng.lng());
 
-          var newLat = evt.latLng.lat();
-          var newLng = evt.latLng.lng();
+      //     var newLat = evt.latLng.lat();
+      //     var newLng = evt.latLng.lng();
 
-          getIceCream(newLat, newLng);
+      //     getIceCream(newLat, newLng);
 
-          infoWindow.open(map, markerobject);
-        });
+      //     infoWindow.open(map, markerobject);
+      //   });
 
-        google.maps.event.addListener(markerobject, 'drag', function (evt) {
-          console.log("marker is being dragged");
-        });
-      }
+      //   google.maps.event.addListener(markerobject, 'drag', function (evt) {
+      //     console.log("marker is being dragged");
+      //   });
+      // }
 
       //Call function to capture new location
-      markerCoords(marker);
+    //   markerCoords(marker);
 
-      infoWindow.open(map);
-      map.setCenter(pos);
-    }, function () {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
+    //   infoWindow.open(map);
+    //   map.setCenter(pos);
+    // }, function () {
+    //   handleLocationError(true, infoWindow, map.getCenter());
+    // });
 
-    $("")
+    // $("")
 
 
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-}
+//   } else {
+//     // Browser doesn't support Geolocation
+//     handleLocationError(false, infoWindow, map.getCenter());
+//   }
+// }
