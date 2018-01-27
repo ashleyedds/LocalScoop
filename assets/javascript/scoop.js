@@ -52,11 +52,12 @@
                 url: queryURLWeather,
                 method: "GET"
             }).then(function(response) {
-                var weatherWell = $("<div>");
-                weatherWell.addClass("card");
-                weatherWell.attr("id", "weather-card");
-                $("#weather-main").prepend(weatherWell);
-                $("#weather-card").append("<span class='card-title'>Current temperature: " + response.main.temp + "</span>");
+                console.log(response);
+                var weatherDiv = $("<div>");
+                weatherDiv.addClass("card blue-grey lighten-2 z-depth-4");
+                weatherDiv.attr("id", "weather-card");
+                $("#weather-main").prepend(weatherDiv);
+                $("#weather-card").append("<span class='card-title'>Current temperature: " + response.main.temp + "&#8457</span>");
                 var cityName = response.name;
                 runQuerySearch(cityName);
             });
@@ -64,6 +65,8 @@
 
         function clearResults() {
             $("#row-section").empty();
+            $("#weather-main").empty();
+            articleCounter = 0;
         }
     
     // Function get users input
@@ -91,7 +94,10 @@
         });
     
     
-    
+        // window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  
+        // window.myWidgetParam.push({id: 17,cityid: '2643743',appid: 'e830b3369005f2ed76e0b64a133b7186',units: 'metric',containerid: 'openweathermap-widget-17',  });  
+        // (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+        // var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();
     
     //Initialize map
     var map, infoWindow;
