@@ -1,3 +1,5 @@
+
+
     var articleCounter = 0;
 
     var getDate = moment().format("YYYY-MM-DD");
@@ -171,26 +173,3 @@
         handleLocationError(false, infoWindow, map.getCenter());
       }
     }
-
-//Find ice cream at current location
-function getIceCream(initialLat, initialLng) {
-  $.ajax({
-    type: "GET",
-    headers: {
-      'user-key': '8851beeb86b413ae8755c9637e970ea1'
-    },
-    url: 'https://developers.zomato.com/api/v2.1/search?lat=' + initialLat + '&lon=' + initialLng + '&radius=2000&cuisines=233&count=1',
-    dataType: 'json',
-    processData: true,
-    success: function (response) {
-      console.log(response);
-
-      var urlIceCream = response.restaurants[0].restaurant.url;
-
-      var nameIceCream = response.restaurants[0].restaurant.name;
-
-      console.log(urlIceCream);
-      console.log(nameIceCream);
-    }
-  });
-};
