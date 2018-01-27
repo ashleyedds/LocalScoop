@@ -1,0 +1,21 @@
+//Example JSON
+
+"users":{
+    "username1":{
+        "name": "Dawn"
+        "locationFriendlyName": {
+            "latitude": "XXXX",
+            "longitude": "XXXX",
+        },
+        "pinnedLocations":{
+            "locationFriendlyName": {
+                "latitude": "XXXX",
+                "longitude": "XXXX",
+            }
+            "locationFriendlyName2": {
+                "latitude": "XXXX",
+                "longitude": "XXXX",
+            }
+        }
+    }
+}

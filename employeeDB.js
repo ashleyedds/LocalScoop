@@ -1,23 +1,44 @@
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCmpc4rChkZG6ca4aemFvXGpLT9sOvaW8w",
-    authDomain: "employeedb-9c70e.firebaseapp.com",
-    databaseURL: "https://employeedb-9c70e.firebaseio.com",
-    projectId: "employeedb-9c70e",
-    storageBucket: "employeedb-9c70e.appspot.com",
-    messagingSenderId: "902147483238"
-  };
-  firebase.initializeApp(config);
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyBjLJpg39qNGQ3BZjJ17DmAejavYWGKtpc",
+  authDomain: "geoloc-1516755897361.firebaseapp.com",
+  databaseURL: "https://geoloc-1516755897361.firebaseio.com",
+  projectId: "geoloc-1516755897361",
+  storageBucket: "geoloc-1516755897361.appspot.com",
+  messagingSenderId: "262816324086"
+};
+firebase.initializeApp(config);
 
-  //create a variable to reference the database
+
+//https://firebase.google.com/docs/auth/web/manage-users
+
+//create a variable to reference the database
 const dbRef = firebase.database().ref('recentUserPush');
+
+//user listener
+var user = firebase.auth().currentUser;
+
+//user functions
+
+function userFunctions(user) {
+  if(user){
+    //User is signed in
+  }
+  else{
+    //No User is signed in.
+    alert("You must sign in to submit")
+  }
+}
+
+
 
 //Capture button click
 $("#submitEmployee").on("click", submitEmployee);
 
 
 function submitEmployee() {
-  // var employeeName;
+var test = $("#employee-name").val().trim();
+console.log(test);
   // var role;
   // var rate;
   // var startDate;
