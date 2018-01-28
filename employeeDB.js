@@ -12,6 +12,7 @@ firebase.initializeApp(config);
 var userId;
 var currentFirebaseUser;
 var dbRef;
+var postKey;
 
 //add realtime listener
 
@@ -31,11 +32,26 @@ firebase.auth().onAuthStateChanged(firebaseUser =>{
     dbRef.on("child_added", function(snapshot) {
       // Log everything that's coming out of snapshot
       console.log(snapshot.val());
-      $("#full-member-list").append(createUserDiv(snapshot.val()));
+      console.log(snapshot.key)
+      postKey = snapshot.key
+      $("#full-member-list").append(createUserDiv(snapshot.val(), postKey));
     }, function(err) {
       // Handle errors
       console.log("Error: ", err.code);
     });
+
+  // Firebase watcher .on("child_removed")
+  dbRef.on("child_removed", function(snapshot) {
+    // Log everything that's coming out of snapshot
+    console.log(snapshot.val());
+    console.log(snapshot.key)
+    postKey = snapshot.key
+    $("#full-member-list").empty()
+    location.reload();
+  }, function(err) {
+    // Handle errors
+    console.log("Error: ", err.code);
+  });
   
 
     } else{
@@ -44,6 +60,8 @@ firebase.auth().onAuthStateChanged(firebaseUser =>{
       //classList.remove("unhide");
   }
 });
+
+
 
 
 // console.log(currentFirebaseUser);
@@ -107,25 +125,66 @@ $("#submitLocation").on("click", event => {
 
 function createUserDiv(user) {
   // create a div displaying user info
-  var convertedDate = moment(user.startDate, "YYYY-MM-DD")
+  var locDate = moment(user.dateAdded);
+  console.log(postKey);
+  var dateFormat = 'MM/DD/YYYY';
+  var convertedDate = locDate.format('MM/DD/YYYY hh:mm a');
+  var delButton = $('<button>').addClass('btn btn-default').attr('id', 'delete-button').attr('value', postKey).text('Delete');
+  var editButton = $('<button>').addClass('btn btn-default').attr('id', 'edit-button').attr('value', postKey).text('Edit');
   const uDiv = $('<tr>').addClass('well');
   uDiv.append($('<td>').addClass('member-location').text(user.locationName))
       .append($('<td>').addClass('member-latitude').text(user.latitude))
       .append($('<td>').addClass('member-longitude').text(user.longitude))
-      .append($('<td>').addClass('delete-button').html("<button class='btn btn-default'>Delete</button>"))
-      .append($('<td>').addClass('delete-button').html("<button class='btn btn-default'>Edit</button>"))
-      .append($('<td>').addClass('search-button').html("<button class='btn btn-default'>Search</button>"));
+      .append($('<td>').addClass('member-longitude').text(convertedDate))
+      .append($('<td>').append(delButton))
+      .append($('<td>').addClass('edit-button').append(editButton))
+      .append($('<td>').addClass('search-button').html("<button class='btn btn-default'>Search</button>").attr('lat-value', user.latitude).attr('long-value', user.longitude));
       
       
   
   return uDiv;
 }
 
+$(document).on("click", "#delete-button", function(){
+
+  var postNum = $(this).val().trim();
+
+  console.log(postNum);
+
+ dbRef.child(postNum).remove();
+  console.log('deleted');
+}
+
+);
+
+$(document).on("click", "#edit-button", function(){
+  
+    var postNum = $(this).val().trim();
+  
+    console.log(postNum);
+  
+   dbRef.child(postNum).remove();
+    console.log('edited');
+  }
+  
+  );
 
 
+// $(document).on("click", "#delete-button", deleteUser);
 
+// function deleteUser() {
+//   var postNum = $("#delete-button").val();
+//   console.log(postNum);
 
+//   dbRemove = firebase.database().ref('users/'+ userId+'/-L3xAHGiZc8nGHkhA9HN');
+//   //https://geoloc-1516755897361.firebaseio.com/users/KyjBnHEZNzgglPWHC7oelSeyXeK2/-L3xAHGiZc8nGHkhA9HN
+  
+//   console.log(dbRef);
+//   dbRemove.on
+//   //dbRemove.remove();
 
+//   //createUserDiv();
+// }
 
 
 /////// USER AUTH
