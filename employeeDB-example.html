@@ -24,10 +24,21 @@
 
 <body>
     <nav class="navbar navbar-inverse bg-inverse">
-        <a href="login.html"> 
+<!--        <a href="login.html"> 
          <button class="btn btn-default">Log In</button>
-       </a>
-       <button type="" class="btn btn-default btn-action hide" id="btnLogout">Log Out</button>
+       </a>-->
+      <div class="col-md-2">
+        <input type="text" placeholder="user name" class="form-control unhide" id="userName">
+      </div>
+      <div class="col-md-2">
+        <input type="email" placeholder="user@domain.com" class="form-control unhide" id="txtEmail">
+      </div>
+      <div class="col-md-2">
+          <input type="password" placeholder="Password" class="form-control unhide" id="txtPassword">
+      </div>
+      <button type="" class="btn btn-default unhide" id="btnLogin">Login</button>
+      <button type="" class="btn btn-default unhide" id="btnSignUp">Sign Up</button>
+       <button type="" class="btn btn-default btn-action" id="btnLogout">Log Out</button>
     </nav>
 
   <!-- Main Bootstrap Search -->
@@ -49,7 +60,7 @@
     
               <!-- Panel Heading for the retrieved articles box -->
               <div class="panel-heading">
-                <h3 class="panel-title"><strong>Current Employee</strong></h3>
+                <h3 class="panel-title"><strong>Saved Location</strong></h3>
               </div>
     
               <!-- This main panel will hold each of the resulting articles -->
@@ -58,12 +69,11 @@
                 <table class="table table-striped" >
                   <thead>
                     <tr>
-                      <td>Employee Name</td>
-                      <td>Role</td>
-                      <td>Start Date</td>
-                      <td>Months Worked</td>
-                      <td>Monthly Rate $</td>  
-                      <td>Total Billed</td>
+                      <td>Location Name</td>
+                      <td>Longitude</td>
+                      <td>Latitude</td>
+                      <td> </td>
+                      <td> </td>  
                     </tr>
                   </thead>
                   <!-- INSERT EMPLOYEE DATA -->
@@ -86,39 +96,34 @@
         <!-- First panel is for handling the search parameters -->
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong> Add Employee</strong></h3>
+            <h3 class="panel-title"><strong>Add Location:</strong></h3>
           </div>
           <div class="panel-body">
 
             <!-- Here we create an HTML Form for handling the inputs-->
-            <form role="form">
+            <form latitude="form">
 
               <!-- Here we create the text box for capturing the search term-->
               <div class="form-group">
-                <label for="search">Employee Name:</label>
-                <input type="text" class="form-control" id="employee-name">
+                <label for="search">Location Name:</label>
+                <input type="text" class="form-control" id="location-name">
               </div>
 
               <!-- Here we capture the number of records that the user wants to retrieve  -->
               <div class="form-group">
-                <label for="pwd">Role:</label>
-                <input type="text" class="form-control" id="employeeRole">
+                <label for="pwd">latitude:</label>
+                <input type="number" step="any" class="form-control" id="latitude">
               </div>
 
               <!-- Here we capture the Start Year Parameter-->
               <div class="form-group">
-                <label for="employeeRate">Rate: </label>
-                <input type="number" class="form-control" id="employeeRate">
+                <label for="employeelongitude">longitude: </label>
+                <input type="number" step="any" class="form-control" id="longitude">
               </div>
 
-              <!-- Here we capture the End Year Parameter -->
-              <div class="form-group">
-                <label for="startDate">Start Date:</label>
-                <input type="date" class="form-control" id="startDate">
-              </div>
 
               <!-- Here we have our final submitEmployee button -->
-              <button type="submitEmployee" class="btn btn-default" id="submitEmployee"><i class="fa fa-search"></i> submitEmployee</button>
+              <button type="submitLocation" class="btn btn-default" id="submitLocation"><i class="fa fa-search"></i> Submit Location </button>
              <!-- <button type="button" class="btn btn-default" id="clear-all"><i class="fa fa-trash"></i> Clear Results</button>-->
 
             </form>
