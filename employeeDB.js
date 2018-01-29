@@ -303,9 +303,10 @@ function getUserInput(){
     //get Login Elements
     const txtEmail = $("#txtEmail").val();
     console.log(txtEmail);
-    const txtPassword = $("#txtPassword").val().trim();
-    const formEmail = $("#txtEmail")
-    const formPass = $("")
+    const txtPassword = $("#txtPassword").val();
+
+  
+    
     const btnLogin = $("#btnLogin").val().trim();
     const btnSignUp = $("#btnSignUp").val().trim();
     const btnLogout =$("#btnLogout").val().trim();
@@ -322,8 +323,10 @@ event.preventDefault();
 
 //Get email and pass
 const email = txtEmail.value;
-console.log(email);
 const pass = txtPassword.value;
+console.log(email);
+console.log(txtPassword);
+
 const auth = firebase.auth();
 
 //sign in
@@ -349,7 +352,7 @@ event.preventDefault();
 //check for real email
 const email = txtEmail.value;
 console.log(email);
-const pass = txtPassword.value;
+const pass = txtPass.value;
 const auth = firebase.auth();
 location.reload();
 //sign in
