@@ -14,6 +14,7 @@ var currentFirebaseUser;
 var dbRef;
 var postKey;
 var editActive = false;
+var accountEditActive = false;
 
 //add realtime listener
 
@@ -24,7 +25,12 @@ firebase.auth().onAuthStateChanged(firebaseUser =>{
     console.log(currentFirebaseUser);
     console.log(firebaseUser);
     console.log(userId);
-   $("#btnLogout").show();
+   $("#btnLogout").removeClass("hide");
+   $("#btnLogin").addClass("hide");
+   $("#btnSignUp").addClass("hide");
+
+   $("#txtEmail").addClass("hide");
+   $("#txtPassword").addClass("hide");
     //classList.remove("hide");
     //create a variable to reference the database
     dbRef = firebase.database().ref('users/'+ userId);
@@ -69,7 +75,12 @@ firebase.auth().onAuthStateChanged(firebaseUser =>{
 
     } else{
       console.log("not logged in");  
-     $("#btnLogout").hide();
+      $("#btnLogout").addClass("hide");
+      $("#btnLogin").removeClass("hide");
+      $("#btnSignUp").removeClass("hide");
+
+      $("#txtEmail").removeClass("hide");
+      $("#txtPassword").removeClass("hide");
       //classList.remove("unhide");
   }
 });
@@ -231,7 +242,26 @@ $(document).on("click", "#edit-button", function(){
   editActive = false;
   console.log("successfully changed the data");
 
-  });    
+  });
+  
+  $(document).on("click", "#editAccount", function(){
+    event.preventDefault();
+    $("#editSettings").removeClass("hide");
+
+  
+    // var postNum = $(this).val().trim();
+    // console.log(postNum);
+    // console.log(dbRef);
+    // dbRef.child(postNum).set({
+    //   locationName : $('#editName').val().trim(),
+    //   longitude : $('#editLat').val().trim(),
+    //   latitude : $('#editLong').val().trim(),
+    //   dateAdded: firebase.database.ServerValue.TIMESTAMP
+    // });
+    // editActive = false;
+    // console.log("successfully changed the data");
+  
+    }); 
 
 
 // $(document).on("click", "#delete-button", deleteUser);
@@ -274,7 +304,6 @@ function getUserInput(){
     const txtEmail = $("#txtEmail").val();
     console.log(txtEmail);
     const txtPassword = $("#txtPassword").val().trim();
-    const formUserName = $("#userName")
     const formEmail = $("#txtEmail")
     const formPass = $("")
     const btnLogin = $("#btnLogin").val().trim();
@@ -322,7 +351,7 @@ const email = txtEmail.value;
 console.log(email);
 const pass = txtPassword.value;
 const auth = firebase.auth();
-
+location.reload();
 //sign in
 const promise = auth.createUserWithEmailAndPassword(email, pass);
 
@@ -333,6 +362,7 @@ promise
 
 function userSignOut() {
     firebase.auth().signOut();
+    location.reload();
 }
 
 // //add realtime listener
