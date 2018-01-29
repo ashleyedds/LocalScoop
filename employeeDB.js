@@ -13,6 +13,7 @@ var userId;
 var currentFirebaseUser;
 var dbRef;
 var postKey;
+var editActive = false;
 
 //add realtime listener
 
@@ -42,6 +43,18 @@ firebase.auth().onAuthStateChanged(firebaseUser =>{
 
   // Firebase watcher .on("child_removed")
   dbRef.on("child_removed", function(snapshot) {
+    // Log everything that's coming out of snapshot
+    console.log(snapshot.val());
+    console.log(snapshot.key)
+    postKey = snapshot.key
+    $("#full-member-list").empty()
+    location.reload();
+  }, function(err) {
+    // Handle errors
+    console.log("Error: ", err.code);
+  });
+
+  dbRef.on("child_changed", function(snapshot) {
     // Log everything that's coming out of snapshot
     console.log(snapshot.val());
     console.log(snapshot.key)
@@ -129,9 +142,9 @@ function createUserDiv(user) {
   console.log(postKey);
   var dateFormat = 'MM/DD/YYYY';
   var convertedDate = locDate.format('MM/DD/YYYY hh:mm a');
-  var delButton = $('<button>').addClass('btn btn-default').attr('id', 'delete-button').attr('value', postKey).text('Delete');
-  var editButton = $('<button>').addClass('btn btn-default').attr('id', 'edit-button').attr('value', postKey).text('Edit');
-  const uDiv = $('<tr>').addClass('well');
+  var delButton = $('<button>').addClass('btn btn-default').attr('id', 'delete-button').attr('value', postKey).attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).text('Delete');
+  var editButton = $('<button>').addClass('btn btn-default').attr('id', 'edit-button').attr('value', postKey).attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).text('Edit');
+  const uDiv = $('<tr>').addClass('well').attr('id', "row-"+postKey);
   uDiv.append($('<td>').addClass('member-location').text(user.locationName))
       .append($('<td>').addClass('member-latitude').text(user.latitude))
       .append($('<td>').addClass('member-longitude').text(user.longitude))
@@ -158,16 +171,67 @@ $(document).on("click", "#delete-button", function(){
 );
 
 $(document).on("click", "#edit-button", function(){
-  
+
+  if (editActive){
+
+    editActive = false;
+    $('.well').removeClass('danger');
+    $("#editName").addClass("hide").attr("placeholder", "");
+    $("#editLat").addClass("hide").attr("placeholder", "");
+    $("#editLong").addClass("hide").attr("placeholder", "");
+    $("#submitEdit").addClass("hide")
+    console.log('already editing a post, but now you are not');
+    alert("please edit one location at a time");
+
+  }else{
+
+    editActive = true;
     var postNum = $(this).val().trim();
-  
+    var editLong = $(this).attr('lat-value');
+    var editLat = $(this).attr('long-value');
+    var editName = $(this).attr('loc-name');
+    console.log(editLong);
+    console.log('you were not editing a post, but now you are');
+    rowId = "#row-"+postNum;
+    $(rowId).addClass('danger');
+    $("#editName").removeClass("hide").attr("value", editName);
+    $("#editLat").removeClass("hide").attr("value", editLat);
+    $("#editLong").removeClass("hide").attr("value", editLong);
+    $("#submitEdit").removeClass("hide").attr("value", postNum);
+
     console.log(postNum);
   
-   dbRef.child(postNum).remove();
-    console.log('edited');
+
   }
-  
-  );
+
+  });
+
+
+  $(document).on("click", "#submitEdit", function(){
+  event.preventDefault();
+
+  var newName = $('#editName').val().trim();
+  var newLat = $('#editLat').val().trim();
+  var newLong = $('#editLong').val().trim();
+  var newDate = firebase.database.ServerValue.TIMESTAMP;
+  console.log(newName);
+  console.log(newLat);
+  console.log(newLong);
+  console.log(newDate);
+
+  var postNum = $(this).val().trim();
+  console.log(postNum);
+  console.log(dbRef);
+  dbRef.child(postNum).set({
+    locationName : $('#editName').val().trim(),
+    longitude : $('#editLat').val().trim(),
+    latitude : $('#editLong').val().trim(),
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+  editActive = false;
+  console.log("successfully changed the data");
+
+  });    
 
 
 // $(document).on("click", "#delete-button", deleteUser);
