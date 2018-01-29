@@ -26,18 +26,34 @@ width: 70%;
 
 .navbar {
     width: 100%;
+    
 }
+
+.nav-wrapper {
+    background-color: rgb(240,98,146);
+    
+}
+
+.nav-wrapper .brand-logo img {
+    height: 50px;
+    padding-top: 10px;
+  }
 
 #logo {
     padding-left: 175px;
+    font-family: 'Lobster', cursive;
 }
 
-#link2 {
-    padding-right: 175px;
+#link3 {
+    margin-right: 175px;
 }
 
 .carousel-item { 
     min-height: 350px; 
     min-width: 300px; 
+}
+
+#weather-card {
+    height: 250px;
 }
 

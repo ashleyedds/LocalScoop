@@ -5,15 +5,28 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="assets/images//favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     </head>
 
     <body>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#!">one</a></li>
+            <li><a href="#!">two</a></li>
+            <li><a href="#!">three</a></li>
+        </ul>
         <nav>
             <div class="nav-wrapper">
-                <a href="#!" id="logo" class="brand-logo">LocalScoop</a>
+                <a id="logo" class="brand-logo left">
+                    <img class="responsive-img" src="assets/images/localscoopsprinkles.png">
+                    LocalScoop
+                </a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a id="link1" href="#">Link 1</a></li>
-                    <li><a id="link2" href="#">Link 2</a></li>
+                    <li><a id="link1" class="dropdown-button" href="#!" data-activates="dropdown1">Saved Locations<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a id="link2" href="#">Login</a></li>
+                    <li><a id="link3" href="#">Logout</a></li>
                 </ul>
             </div>
         </nav>
@@ -27,7 +40,7 @@
                     <div id="map" class="z-depth-5"> </div>
                 </div>
                 <div class="col s4">
-                    <div class="card pink lighten-2 z-depth-5">
+                    <div id="weather-card" class="card cyan lighten-2 z-depth-5">
                         <div class="card-content white-text">
                             <span class="card-title">Weather Blurb Here</span>
                             <p>With some stuff here.</p>
@@ -54,7 +67,13 @@
                     <p>Short synopsis of story goes here.</p>
                 </div>
             </a>
-            <a class="carousel-item card purple darken-1 z-depth-5" href="#four!"><img >
+            <a class="carousel-item card pink lighten-2 z-depth-5" href="#four!"><img >
+                <div class="card-content white-text">
+                    <span class="card-title">Story Headline</span>
+                    <p>Short synopsis of story goes here.</p>
+                </div>
+            </a>
+            <a class="carousel-item card purple darken-1 z-depth-5" href="#one!">
                 <div class="card-content white-text">
                     <span class="card-title">Story Headline</span>
                     <p>Short synopsis of story goes here.</p>
