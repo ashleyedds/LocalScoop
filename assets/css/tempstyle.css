@@ -1,0 +1,39 @@
+html, body {
+    background-image: url("../images/paper.png");
+    height: 100%;
+    margin: 50px;
+    padding: 0;
+  }
+
+.col {
+  border: 1px solid blue;
+}
+
+.row {
+  border: 1px solid red;
+}
+
+.card {
+  margin: 0px;
+}
+
+#map {
+    margin: 20px 0;
+    padding: 0;
+    height: 300px;
+    float: left;
+    width: 100%;
+  }
+
+  .article-img {
+      height: 25%;
+      width: 25%;
+  }
+
+  .card-title {
+      color: white;
+  }
+
+  .card-content {
+      height: 100%;
+  }
