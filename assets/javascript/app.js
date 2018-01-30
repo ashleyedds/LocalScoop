@@ -1,3 +1,4 @@
+
 var articleCounter = 0;
 
 var getDate = moment().format("YYYY-MM-DD");
