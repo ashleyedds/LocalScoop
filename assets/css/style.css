@@ -1,0 +1,59 @@
+html, body {
+    background-image: url("../images/paper.png");
+    height: 100%;
+    width: 100%;
+    padding: 0;
+  }
+
+.card {
+  margin: 0px;
+ 
+}
+
+#map {
+    margin: 0px 0;
+    padding: 0;
+    height: 250px;
+    width: 100%;
+    float: left;
+  }
+
+.container {
+margin: 0 auto;
+max-width: 1280px;
+width: 70%;
+}
+
+.navbar {
+    width: 100%;
+    
+}
+
+.nav-wrapper {
+    background-color: rgb(240,98,146);
+    
+}
+
+.nav-wrapper .brand-logo img {
+    height: 50px;
+    padding-top: 10px;
+  }
+
+#logo {
+    padding-left: 175px;
+    font-family: 'Lobster', cursive;
+}
+
+#link3 {
+    margin-right: 175px;
+}
+
+.carousel-item { 
+    min-height: 350px; 
+    min-width: 300px; 
+}
+
+#weather-card {
+    height: 250px;
+}
+
