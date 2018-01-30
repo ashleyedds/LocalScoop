@@ -1,3 +1,5 @@
+$('.carousel').carousel();
+$(".dropdown-button").dropdown();
 
 var articleCounter = 0;
 
