@@ -1,85 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-
-	<head>
-		<title>LocalLogin</title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-		<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="assets/images//favicon.ico" type="image/x-icon">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-		<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-	</head>
-
-    <body>
-        <nav>
-            <ul id="dropdown1" class="dropdown-content">
-                <li><a href="#!">one</a></li>
-                <li><a href="#!">two</a></li>
-                <li><a href="#!">three</a></li>
-            </ul>
-            <ul id="dropdown2" class="dropdown-content">
-                <li><a href="#!">one</a></li>
-                <li><a href="#!">two</a></li>
-                <li><a href="#!">three</a></li>
-            </ul>
-            <div class="nav-wrapper">
-                <a href="#!" id="logo" class="brand-logo center">
-                <img class="responsive-img" src="assets/images/localscoopsprinkles.png">
-                LocalScoop
-                </a>
-              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-              <ul class="right hide-on-med-and-down">
-                <li><a id="link1" class="dropdown-button" href="#!" data-activates="dropdown1">Saved Locations<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a id="link2" href="#">Login</a></li>
-                <li><a id="link3" href="#">Logout</a></li>
-              </ul>
-              <ul class="side-nav" id="mobile-demo">
-                <li><a id="link1" class="dropdown-button" href="#!" data-activates="dropdown2">Saved Locations<i class="material-icons right">arrow_drop_down</i></a></li>
-                <li><a id="link2" href="#">Login</a></li>
-                <li><a id="link3" href="#">Logout</a></li>
-              </ul>
-            </div>
-        </nav>
-
-        <br>
-        <br>
-        
-        <div class="container">
-            <div class="row">
-                <form class="col s12">
-                  <div class="row">
-                    <div class="input-field col s8 offset-s2">
-                      <input placeholder="Email Address" id="email" type="text" class="validate">
-                      <label for="email"></label>
-                    </div>
-                    <div class="input-field col s8 offset-s2">
-                      <input placeholder="Password" id="password" type="text" class="validate">
-                      <label for="password"></label>
-                    </div>
-                  </div>
-              </form>
-                
-                <br>
-                <br>
-
-                  <div class="row">
-                    <div class="col s12 center-align">
-                        <a class="waves-effect waves-light btn"><i class="material-icons right">person</i>Login</a>
-                        <a class="waves-effect waves-light btn"><i class="material-icons right">add</i>New User</a>
-                    </div>
-                  </div>
-
-            <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCohcwU5j-Gu6Az6HVkUF0viow3lAyLZL8&callback=initMap"></script>
-            <script type="text/javascript" src="assets/javascript/app.js"></script>
-    </body>
+<!DOCTYPE html>		
+<html lang="en">		
+		
+<head>		
+  <meta charset="UTF-8">		
+  <title>New York Times Search</title>		
+  <!-- Bootswatch Styling for Improving the Aesthetics -->		
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">		
+		
+  <!-- Font Awesome CSS Icons (For cool glyphicons) -->		
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">		
+		
+  <!-- Style to fix the issue of text extending past panel length -->		
+  <style>		
+    .panel-body a {		
+      word-break: break-all;		
+    }		
+  </style>		
+		
+<script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>		
+		
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>		
+</head>		
+		
+<body>		
+		
+  <!-- Main Bootstrap Search -->		
+  <div class="container">		
+		
+    <!-- Jumbotron for Title -->		
+    <div class="jumbotron" style="background-color: #20315A ; color: white;">		
+      <h1 class="text-center"><strong> LocScoop</strong></h1>		
+      <h3 class="text-center"> Find the Local Scoop!</h3>		
+    </div>		
+		
+        <!-- This row will handle all of the retrieved articles -->		
+        <!-- <div class="row">		
+          <div class="col-sm-12">		
+            <br>		
+    		
+            This panel will initially be made up of a panel and wells for each of the articles retrieved		
+            <div class="panel panel-primary">		
+    		
+              < Panel Heading for the retrieved articles box		
+              <div class="panel-heading">		
+                <h3 class="panel-title"><strong>Current Employee</strong></h3>		
+              </div>		
+    		
+              This main panel will hold each of the resulting articles		
+              <div class="panel-body" id="well-section">		
+		
+                <table class="table table-striped" >		
+                  <thead>		
+                    <tr>		
+                      <td>Employee Name</td>		
+                      <td>Role</td>		
+                      <td>Start Date</td>		
+                      <td>Months Worked</td>		
+                      <td>Monthly Rate $</td>  		
+                      <td>Total Billed</td>		
+                    </tr>		
+                  </thead>		
+                  INSERT EMPLOYEE DATA		
+                		
+                  <tbody id="full-member-list">				
+                  </tbody>		
+                  		
+                </table>		
+              </div>		
+            </div>		
+          </div>		
+        </div>-->		
+		
+		
+    <!-- Row for Searching New York Times -->		
+    <div class="row">		
+      <div class="col-sm-12">		
+        <br>		
+        <!-- First panel is for handling the search parameters -->		
+        <div class="panel panel-primary">		
+          <div class="panel-heading">		
+            <h3 class="panel-title"><strong> User Login </strong></h3>		
+          </div>		
+          <div class="panel-body">		
+		
+            <!-- Here we create an HTML Form for handling the inputs-->		
+            <form role="form">		
+		
+              <!-- Here we create the text box for capturing the search term-->		
+              <div class="form-group">		
+                <label for="search">User Name:</label>		
+                <input type="text" placeholder="user name" class="form-control" id="userName">		
+              </div>		
+		
+              <!-- Here we capture the number of records that the user wants to retrieve  -->		
+              <div class="form-group">		
+                <label for="email">Email:</label>		
+                <input type="email" placeholder="email" class="form-control" id="email">		
+              </div>		
+		
+              <div class="form-group">		
+                <label for="Password">Password:</label>		
+                <input type="pwd" placeholder="Password" class="form-control" id="password">		
+              </div>		
+		
+            		
+		
+              <!-- Here we have our final submitEmployee button -->		
+              <button type="submitEmployee" class="btn btn-default" id="submitEmployee">Login</button>		
+              <button type="submitEmployee" class="btn btn-default" id="submitEmployee">Sign Up</button>		
+             <!-- <button type="button" class="btn btn-default" id="clear-all"><i class="fa fa-trash"></i> Clear Results</button>-->		
+		
+            </form>		
+          </div>		
+        </div>		
+      </div>		
+    </div>		
+		
+		
+		
+    <!-- Footer Region -->		
+    <div class="row">		
+      <div class="col-sm-12">		
+		
+        <!-- Line Break followed by closing -->		
+        <hr>		
+        <h5 class="text-center"><small>Made by Ahmed with lots and lots of <i class="fa fa-heart"></i></small></h5>		
+		
+      </div>		
+    </div>		
+		
+  </div>		
+		
+  <!-- jQuery JS -->		
+  <script src="https://code.jquery.com/jquery.js"></script>		
+		
+  <!-- Code to the JavaScript File -->		
+  <script src="employeeDB.js"></script>		
+		
+</body>		
+		
 </html>
-
-        
-
-
