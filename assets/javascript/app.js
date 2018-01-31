@@ -1,5 +1,6 @@
 $('.carousel').carousel();
 $(".dropdown-button").dropdown();
+$(".button-collapse").sideNav();
 
 var articleCounter = 0;
 
