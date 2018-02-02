@@ -10,10 +10,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-database.js"></script>
-
+		<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
     </head>
 
     <body>
@@ -59,58 +56,53 @@
                     <div id="map" class="z-depth-5"> </div>
                 </div>
                 <div class="col s4">
-                    <div id="weather-card" class="card cyan lighten-2 z-depth-5">
+                    <div id="weather-card" class="card cyan lighten-2 z-depth-5 center-align">
                         <div class="card-content white-text">
-                            <span class="card-title">Weather Blurb Here</span>
-                            <p>With some stuff here.</p>
+                            <span id="weather-temp" class="card-title"></span>
+                            <div id="weather-conditions"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col s4">
-                        <div id="ice-cream-card" class="card purple darken-1 z-depth-5">
+                        <div id="ice-cream-card" class="card purple darken-1 z-depth-5 center-align">
                             <div class="card-content white-text">
-                                <span class="card-title">Weather Blurb Here</span>
-                                <p>With some stuff here.</p>
+                                <span id="ice-cream-title" class="card-title"></span>
+                                <a id="ice-cream-link" href=""><span id="ice-cream" class="card-title"></span></a>
                             </div>
                         </div>
                     </div>
             </div>
         <div class="carousel">
-            <a class="carousel-item card pink lighten-2 z-depth-5" href="#one!">
+            <a id="article-1" class="carousel-item card pink lighten-2 z-depth-5" href="#one!"><img class="responsive-img" src="">
                 <div class="card-content white-text">
-                    <span class="card-title">Story Headline</span>
-                    <p>Short synopsis of story goes here.</p>
+                    <span class="card-title"></span>
                 </div>
             </a>
-            <a class="carousel-item card teal darken-1 z-depth-5" href="#two!"><img >
+            <a id="article-2" class="carousel-item card teal darken-1 z-depth-5" href="#two!"><img class="responsive-img" src="">
                 <div class="card-content white-text">
-                    <span class="card-title">Story Headline</span>
-                    <p>Short synopsis of story goes here.</p>
+                    <span class="card-title"></span>
                 </div>
             </a>
-            <a class="carousel-item card cyan lighten-2 z-depth-5" href="#three!"><img >
+            <a id="article-3" class="carousel-item card cyan lighten-2 z-depth-5" href="#three!"><img class="responsive-img" src="">
                 <div class="card-content white-text">
-                    <span class="card-title">Story Headline</span>
-                    <p>Short synopsis of story goes here.</p>
+                    <span class="card-title"></span>
                 </div>
             </a>
-            <a class="carousel-item card pink lighten-2 z-depth-5" href="#four!"><img >
+            <a id="article-4" class="carousel-item card pink lighten-2 z-depth-5" href="#four!"><img class="responsive-img" src="">
                 <div class="card-content white-text">
-                    <span class="card-title">Story Headline</span>
-                    <p>Short synopsis of story goes here.</p>
+                    <span class="card-title"></span>
                 </div>
             </a>
-            <a class="carousel-item card purple darken-1 z-depth-5" href="#one!">
+            <a id="article-5" class="carousel-item card purple darken-1 z-depth-5" href="#one!"><img class="responsive-img" src="">
                 <div class="card-content white-text">
-                    <span class="card-title">Story Headline</span>
-                    <p>Short synopsis of story goes here.</p>
+                    <span class="card-title"></span>
                 </div>
             </a>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCohcwU5j-Gu6Az6HVkUF0viow3lAyLZL8&callback=initMap"></script>
-        <<script type="text/javascript" src="assets/javascript/app.js"></script>
-        <script type="text/javascript" src="assets/javascript/firebase2.js"></script>
+        <script type="text/javascript" src="https://momentjs.com/downloads/moment.js"></script>
+        <script type="text/javascript" src="assets/javascript/lsapp.js"></script>
     </body>
 </HTML>

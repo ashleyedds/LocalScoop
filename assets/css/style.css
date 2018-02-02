@@ -63,6 +63,10 @@ html, body { /* Set Background image */
     height: 121px;
 }
 
+#ice-cream {
+    font-size: 15px;
+}
+
 /* -----------------------------------------------  
             STYLING FOR LOGIN PAGE
    -----------------------------------------------*/
