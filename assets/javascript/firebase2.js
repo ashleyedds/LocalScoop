@@ -122,6 +122,7 @@ $("#btnLogout").on("click", e =>{
 // add login event
 $("#btnLogin").on("click",e => {
     event.preventDefault();
+    //console.log("testing login");
     getUserInput();
 //Get email and pass
     const email = txtEmail.value;
