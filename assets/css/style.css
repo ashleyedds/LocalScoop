@@ -51,6 +51,10 @@ html, body { /* Set Background image */
     min-width: 300px; 
 }
 
+.carousel .carousel-item, img.responsive-img, video.responsive-video {
+    border-radius: 5px
+}
+
 .card { /* Set card spacing */
     margin: 2px;
 }
