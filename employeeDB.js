@@ -1,135 +1,50 @@
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyBjLJpg39qNGQ3BZjJ17DmAejavYWGKtpc",
-  authDomain: "geoloc-1516755897361.firebaseapp.com",
-  databaseURL: "https://geoloc-1516755897361.firebaseio.com",
-  projectId: "geoloc-1516755897361",
-  storageBucket: "geoloc-1516755897361.appspot.com",
-  messagingSenderId: "262816324086"
-};
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCmpc4rChkZG6ca4aemFvXGpLT9sOvaW8w",
+    authDomain: "employeedb-9c70e.firebaseapp.com",
+    databaseURL: "https://employeedb-9c70e.firebaseio.com",
+    projectId: "employeedb-9c70e",
+    storageBucket: "employeedb-9c70e.appspot.com",
+    messagingSenderId: "902147483238"
+  };
+  firebase.initializeApp(config);
 
-firebase.initializeApp(config);
-var userId;
-var currentFirebaseUser;
-var dbRef;
-var postKey;
-var editActive = false;
-var accountEditActive = false;
-
-//add realtime listener
-
-firebase.auth().onAuthStateChanged(firebaseUser =>{
-  if(firebaseUser){
-    userId = firebaseUser.uid;
-    currentFirebaseUser = firebaseUser;
-    console.log(currentFirebaseUser);
-    console.log(firebaseUser);
-    console.log(userId);
-   $("#btnLogout").removeClass("hide");
-   $("#btnLogin").addClass("hide");
-   $("#btnSignUp").addClass("hide");
-
-   $("#txtEmail").addClass("hide");
-   $("#txtPassword").addClass("hide");
-    //classList.remove("hide");
-    //create a variable to reference the database
-    dbRef = firebase.database().ref('users/'+ userId);
-  
-  // Firebase watcher .on("child_added")
-    dbRef.on("child_added", function(snapshot) {
-      // Log everything that's coming out of snapshot
-      console.log(snapshot.val());
-      console.log(snapshot.key)
-      postKey = snapshot.key
-      $("#full-member-list").append(createUserDiv(snapshot.val(), postKey));
-    }, function(err) {
-      // Handle errors
-      console.log("Error: ", err.code);
-    });
-
-  // Firebase watcher .on("child_removed")
-  dbRef.on("child_removed", function(snapshot) {
-    // Log everything that's coming out of snapshot
-    console.log(snapshot.val());
-    console.log(snapshot.key)
-    postKey = snapshot.key
-    $("#full-member-list").empty()
-    location.reload();
-  }, function(err) {
-    // Handle errors
-    console.log("Error: ", err.code);
-  });
-
-  dbRef.on("child_changed", function(snapshot) {
-    // Log everything that's coming out of snapshot
-    console.log(snapshot.val());
-    console.log(snapshot.key)
-    postKey = snapshot.key
-    $("#full-member-list").empty()
-    location.reload();
-  }, function(err) {
-    // Handle errors
-    console.log("Error: ", err.code);
-  });
-  
-
-    } else{
-      console.log("not logged in");  
-      $("#btnLogout").addClass("hide");
-      $("#btnLogin").removeClass("hide");
-      $("#btnSignUp").removeClass("hide");
-
-      $("#txtEmail").removeClass("hide");
-      $("#txtPassword").removeClass("hide");
-      //classList.remove("unhide");
-  }
-});
-
-
-
-
-// console.log(currentFirebaseUser);
-
-
-// //https://firebase.google.com/docs/auth/web/manage-users
-// //user + userID 
-// //var userId = firebase.auth().uid;
-// //WHY IS THIS NOT TAKING MY USER ID? I KNOW IT HAS SOMETHING TO DO WITH GLOBAL SCOPE
-// console.log(userId);
-// var user = firebase.auth().currentUser;
-// console.log(user);
-
-
+//create a variable to reference the database
+const dbRef = firebase.database().ref('recentUserPush');
 
 //Capture button click
-$("#submitLocation").on("click", event => {
-  event.preventDefault();
-  
-  // var test = $("#location-name").val().trim();
-  // console.log(test);
-    // var latitude;
-    // var longitude;
-    // var startDate;
+$("#submitEmployee").on("click", submitEmployee);
 
-  
 
-  dbRef.push({
+function submitEmployee() {
+  // var employeeName;
+  // var role;
+  // var rate;
+  // var startDate;
 
-    locationName : $("#location-name").val().trim(),
-    longitude : $("#longitude").val().trim(),
-    latitude : $("#latitude").val().trim(),
-    dateAdded: firebase.database.ServerValue.TIMESTAMP
-  });
+event.preventDefault();
 
-  console.log("success");
-
+dbRef.push({
+  employeeName : $("#employee-name").val().trim(),
+  role : $("#employeeRole").val().trim(),
+  rate : $("#employeeRate").val().trim(),
+  startDate : $("#startDate").val().trim(),
+  dateAdded: firebase.database.ServerValue.TIMESTAMP
 });
 
-//user functions
- 
- 
+console.log("success");
 
+}
 
+// Firebase watcher .on("child_added")
+dbRef.on("child_added", function(snapshot) {
+  // Log everything that's coming out of snapshot
+  console.log(snapshot.val());
+  $("#dropdown1").append(createUserDiv(snapshot.val()));
+}, function(err) {
+  // Handle errors
+  console.log("Error: ", err.code);
+});
 
 // dbRef.orderByChild('dateAdded').limitToLast(5).on('child_added',function(snapshot){
 //   // Set most recent user
@@ -140,242 +55,32 @@ $("#submitLocation").on("click", event => {
 
 // function displayMostRecent(user) {
 //   // Add user info to HTML
-//   console.log(user.locationName);
-//   $("#name-display").text(user.locationName);
-//   $("#latitude-display").text(user.latitude);
-//   $("#employee-longitude").text(user.longitude);
+//   console.log(user.employeeName);
+//   $("#name-display").text(user.employeeName);
+//   $("#role-display").text(user.role);
+//   $("#employee-rate").text(user.rate);
 //   $("#start-date").text(user.startDate);
 // }
 
 function createUserDiv(user) {
   // create a div displaying user info
-  var locDate = moment(user.dateAdded);
-  console.log(postKey);
-  var dateFormat = 'MM/DD/YYYY';
-  var convertedDate = locDate.format('MM/DD/YYYY hh:mm a');
-  var delButton = $('<button>').addClass('btn btn-default').attr('id', 'delete-button').attr('value', postKey).attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).text('Delete');
-  var editButton = $('<button>').addClass('btn btn-default').attr('id', 'edit-button').attr('value', postKey).attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).text('Edit');
-  const uDiv = $('<tr>').addClass('well').attr('id', "row-"+postKey);
-  uDiv.append($('<td>').addClass('member-location').text(user.locationName))
-      .append($('<td>').addClass('member-latitude').text(user.latitude))
-      .append($('<td>').addClass('member-longitude').text(user.longitude))
-      .append($('<td>').addClass('member-longitude').text(convertedDate))
-      .append($('<td>').append(delButton))
-      .append($('<td>').addClass('edit-button').append(editButton))
-      .append($('<td>').addClass('search-button').html("<button class='btn btn-default'>Search</button>").attr('lat-value', user.latitude).attr('long-value', user.longitude));
+  var convertedDate = moment(user.startDate, "YYYY-MM-DD")
+  const uDiv = $('<tr>').addClass('well');
+  uDiv.append($('<td>').addClass('member-name').text(user.employeeName))
+      .append($('<td>').addClass('member-email').text(user.role))
+      .append($('<td>').addClass('member-comment').text(convertedDate))
+      .append($('<td>').addClass('member-comment').text(parseInt((convertedDate.diff(moment(),"months"))*-1)))
+      .append($('<td>').addClass('member-age').text(user.rate));
       
       
   
   return uDiv;
 }
 
-$(document).on("click", "#delete-button", function(){
-
-  var postNum = $(this).val().trim();
-
-  console.log(postNum);
-
- dbRef.child(postNum).remove();
-  console.log('deleted');
-}
-
-);
-
-$(document).on("click", "#edit-button", function(){
-
-  if (editActive){
-
-    editActive = false;
-    $('.well').removeClass('danger');
-    $("#editName").addClass("hide").attr("placeholder", "");
-    $("#editLat").addClass("hide").attr("placeholder", "");
-    $("#editLong").addClass("hide").attr("placeholder", "");
-    $("#submitEdit").addClass("hide")
-    console.log('already editing a post, but now you are not');
-    alert("please edit one location at a time");
-
-  }else{
-
-    editActive = true;
-    var postNum = $(this).val().trim();
-    var editLong = $(this).attr('lat-value');
-    var editLat = $(this).attr('long-value');
-    var editName = $(this).attr('loc-name');
-    console.log(editLong);
-    console.log('you were not editing a post, but now you are');
-    rowId = "#row-"+postNum;
-    $(rowId).addClass('danger');
-    $("#editName").removeClass("hide").attr("value", editName);
-    $("#editLat").removeClass("hide").attr("value", editLat);
-    $("#editLong").removeClass("hide").attr("value", editLong);
-    $("#submitEdit").removeClass("hide").attr("value", postNum);
-
-    console.log(postNum);
-  
-
-  }
-
-  });
-
-
-  $(document).on("click", "#submitEdit", function(){
-  event.preventDefault();
-
-  var newName = $('#editName').val().trim();
-  var newLat = $('#editLat').val().trim();
-  var newLong = $('#editLong').val().trim();
-  var newDate = firebase.database.ServerValue.TIMESTAMP;
-  console.log(newName);
-  console.log(newLat);
-  console.log(newLong);
-  console.log(newDate);
-
-  var postNum = $(this).val().trim();
-  console.log(postNum);
-  console.log(dbRef);
-  dbRef.child(postNum).set({
-    locationName : $('#editName').val().trim(),
-    longitude : $('#editLat').val().trim(),
-    latitude : $('#editLong').val().trim(),
-    dateAdded: firebase.database.ServerValue.TIMESTAMP
-  });
-  editActive = false;
-  console.log("successfully changed the data");
-
-  });
-  
-  $(document).on("click", "#editAccount", function(){
-    event.preventDefault();
-    $("#editSettings").removeClass("hide");
-
-  
-    // var postNum = $(this).val().trim();
-    // console.log(postNum);
-    // console.log(dbRef);
-    // dbRef.child(postNum).set({
-    //   locationName : $('#editName').val().trim(),
-    //   longitude : $('#editLat').val().trim(),
-    //   latitude : $('#editLong').val().trim(),
-    //   dateAdded: firebase.database.ServerValue.TIMESTAMP
-    // });
-    // editActive = false;
-    // console.log("successfully changed the data");
-  
-    }); 
-
-
-// $(document).on("click", "#delete-button", deleteUser);
-
-// function deleteUser() {
-//   var postNum = $("#delete-button").val();
-//   console.log(postNum);
-
-//   dbRemove = firebase.database().ref('users/'+ userId+'/-L3xAHGiZc8nGHkhA9HN');
-//   //https://geoloc-1516755897361.firebaseio.com/users/KyjBnHEZNzgglPWHC7oelSeyXeK2/-L3xAHGiZc8nGHkhA9HN
-  
-//   console.log(dbRef);
-//   dbRemove.on
-//   //dbRemove.remove();
-
-//   //createUserDiv();
-// }
-
-
-/////// USER AUTH
 
 
 
 
 
 
-
-
-
-
-// add login event
-$("#btnLogin").on("click", submitUser);
-//add signup event
-$("#btnSignUp").on("click", userSignUp);
-//add logout event if logged in
-$("#btnLogout").on("click", userSignOut);
-
-function getUserInput(){
-    //get Login Elements
-    const txtEmail = $("#txtEmail").val();
-    console.log(txtEmail);
-    const txtPassword = $("#txtPassword").val();
-
-  
-    
-    const btnLogin = $("#btnLogin").val().trim();
-    const btnSignUp = $("#btnSignUp").val().trim();
-    const btnLogout =$("#btnLogout").val().trim();
-}
-
-
-function submitUser() {
-
-//pull element info from form
-getUserInput();
-
-//prevent default so no auto refresh
-event.preventDefault();
-
-//Get email and pass
-const email = txtEmail.value;
-const pass = txtPassword.value;
-console.log(email);
-console.log(txtPassword);
-
-const auth = firebase.auth();
-
-//sign in
-const promise = auth.signInWithEmailAndPassword(email, pass);
-
-// this logs any errors and logs them to the console
-promise.catch(e => console.log(e.message));
-
-}
-
-function userSignUp() {
-
-//prevent default so no auto refresh
-event.preventDefault();
-
-//pull element info from form
-getUserInput();
-
-//prevent default so no auto refresh
-event.preventDefault();
-
-//Get email and pass
-//check for real email
-const email = txtEmail.value;
-console.log(email);
-const pass = txtPass.value;
-const auth = firebase.auth();
-location.reload();
-//sign in
-const promise = auth.createUserWithEmailAndPassword(email, pass);
-
-// this logs any errors and logs them to the console
-promise
-    .catch(e => console.log(e.message));
-}
-
-function userSignOut() {
-    firebase.auth().signOut();
-    location.reload();
-}
-
-// //add realtime listener
-// firebase.auth().onAuthStateChanged(firebaseUser =>{
-//     if(firebaseUser){
-//         console.log(firebaseUser);
-//         btnLogout.classList.remove("hide");
-//     } else{
-//         console.log("not logged in");  
-//         btnLogout.classList.add("hide");
-//     }
-// });
 

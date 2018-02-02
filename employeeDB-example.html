@@ -23,68 +23,14 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse bg-inverse">
-<!--        <a href="login.html"> 
-         <button class="btn btn-default">Log In</button>
-       </a>-->
-      <div class="col-md-2">
-        <input type="email" placeholder="user@domain.com" class="form-control" id="txtEmail">
-      </div>
-      <div class="col-md-2">
-          <input type="password" placeholder="Password" class="form-control" id="txtPassword">
-      </div>
-      <button type="" class="btn btn-default" id="btnLogin">Login</button>
-      <button type="" class="btn btn-default" id="btnSignUp">Sign Up</button>
-       <button type="" class="btn btn-default btn-action" id="btnLogout">Log Out</button>
-       <button type="" class="btn btn-default btn-action" id="editAccount">Settings</button>
-    </nav>
 
   <!-- Main Bootstrap Search -->
   <div class="container">
 
     <!-- Jumbotron for Title -->
     <div class="jumbotron" style="background-color: #20315A ; color: white;">
-      <h1 class="text-center"><strong> Local Scoop</strong></h1>
-      <h3 class="text-center"> I scream, you scream we all scream for ice cream and the new stream! </h3>
-    </div>
-    <div class="well hide" id="editSettings">
-      //UserName
-        <div class="row">
-            <div class="col-md-8">
-            <input type="text" placeholder="change username" class="form-control" id="userName">
-            </div>
-            <div class="col-md-2">
-              <button type="" class="btn btn-default" id="changeUserName">Change Username</button>
-            </div>
-          </div>
-      //Email
-        <div class="row">
-            <div class="col-md-8">
-            <input type="text" placeholder="change email" class="form-control" id="userName">
-            </div>
-            <div class="col-md-2">
-              <button type="" class="btn btn-default" id="changeEmail">Change Email</button>
-            </div>
-          </div>
-      //Password
-          <div class="row">
-            <div class="col-md-8">
-            <input type="password" placeholder="Password" class="form-control" id="changePassword">
-            </div>
-            <div class="col-md-2">
-              <button type="" class="btn btn-default" id="changePassword">Change Password</button>
-            </div>
-          </div>
-      //Password
-          <div class="row">
-            <div class="col-md-8">
-                <label class="switch">
-                    <input type="checkbox" data-toggle="toggle">
-                    <span class="slider"></span>
-                  </label>
-            </div>
-          </div>
-
+      <h1 class="text-center"><strong> Employee Data Management</strong></h1>
+      <h3 class="text-center"> A Comprehensive Directory of Employee Billable Hours</h3>
     </div>
 
         <!-- This row will handle all of the retrieved articles -->
@@ -97,34 +43,21 @@
     
               <!-- Panel Heading for the retrieved articles box -->
               <div class="panel-heading">
-                <h3 class="panel-title"><strong>Saved Location</strong></h3>
+                <h3 class="panel-title"><strong>Current Employee</strong></h3>
               </div>
     
-              <!-- This is where the form appears to edit your entry -->
-              <div id="editLocation" class="well">
-                  <div class="col-md-2">
-                      <input type="text" placeholder="" class="form-control hide" id="editName">
-                    </div>
-                    <div class="col-md-2">
-                      <input type="number" step="any" placeholder="" class="form-control hide" id="editLat">
-                    </div>
-                    <div class="col-md-2">
-                        <input type="number" step="any" placeholder="" class="form-control hide" id="editLong">
-                    </div>
-                    <button type="submitEdit" class="btn btn-default hide" id="submitEdit"><i class="fa fa-search"></i> Submit Edit </button>
-
-              </div>
               <!-- This main panel will hold each of the resulting articles -->
               <div class="panel-body" id="well-section">
 
                 <table class="table table-striped" >
                   <thead>
                     <tr>
-                      <td>Location Name</td>
-                      <td>Longitude</td>
-                      <td>Latitude</td>
-                      <td>Push ID </td>
-                      <td> </td>  
+                      <td>Employee Name</td>
+                      <td>Role</td>
+                      <td>Start Date</td>
+                      <td>Months Worked</td>
+                      <td>Monthly Rate $</td>  
+                      <td>Total Billed</td>
                     </tr>
                   </thead>
                   <!-- INSERT EMPLOYEE DATA -->
@@ -147,34 +80,39 @@
         <!-- First panel is for handling the search parameters -->
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Add Location:</strong></h3>
+            <h3 class="panel-title"><strong> Add Employee</strong></h3>
           </div>
           <div class="panel-body">
 
             <!-- Here we create an HTML Form for handling the inputs-->
-            <form latitude="form">
+            <form role="form">
 
               <!-- Here we create the text box for capturing the search term-->
               <div class="form-group">
-                <label for="search">Location Name:</label>
-                <input type="text" class="form-control" id="location-name">
+                <label for="search">Employee Name:</label>
+                <input type="text" class="form-control" id="employee-name">
               </div>
 
               <!-- Here we capture the number of records that the user wants to retrieve  -->
               <div class="form-group">
-                <label for="pwd">latitude:</label>
-                <input type="number" step="any" class="form-control" id="latitude">
+                <label for="pwd">Role:</label>
+                <input type="text" class="form-control" id="employeeRole">
               </div>
 
               <!-- Here we capture the Start Year Parameter-->
               <div class="form-group">
-                <label for="employeelongitude">longitude: </label>
-                <input type="number" step="any" class="form-control" id="longitude">
+                <label for="employeeRate">Rate: </label>
+                <input type="number" class="form-control" id="employeeRate">
               </div>
 
+              <!-- Here we capture the End Year Parameter -->
+              <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="date" class="form-control" id="startDate">
+              </div>
 
               <!-- Here we have our final submitEmployee button -->
-              <button type="submitLocation" class="btn btn-default" id="submitLocation"><i class="fa fa-search"></i> Submit Location </button>
+              <button type="submitEmployee" class="btn btn-default" id="submitEmployee"><i class="fa fa-search"></i> submitEmployee</button>
              <!-- <button type="button" class="btn btn-default" id="clear-all"><i class="fa fa-trash"></i> Clear Results</button>-->
 
             </form>
@@ -191,7 +129,7 @@
 
         <!-- Line Break followed by closing -->
         <hr>
-        <h5 class="text-center"><small>Made by Dawn with lots and lots of <i class="fa fa-heart"></i></small></h5>
+        <h5 class="text-center"><small>Made by Ahmed with lots and lots of <i class="fa fa-heart"></i></small></h5>
 
       </div>
     </div>
@@ -200,7 +138,6 @@
 
   <!-- jQuery JS -->
   <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
 
   <!-- Code to the JavaScript File -->
   <script src="employeeDB.js"></script>
