@@ -1,59 +1,87 @@
-html, body {
-    background-image: url("../images/paper.png");
-    height: 100%;
-    width: 100%;
-    padding: 0;
-  }
+/* -----------------------------------------------  
+                UNIVERSAL STYLING
+   -----------------------------------------------*/
 
-.card {
-  margin: 0px;
- 
+html, body { /* Set Background image */
+    background-image: url("../images/paper.png");
 }
 
-#map {
+.container { /*  */
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 70%;
+}
+
+/* -----------------------------------------------  
+               STYLING FOR NAVBAR
+   -----------------------------------------------*/
+
+.nav-wrapper { /* Navbar coloring */
+    background-color: rgb(240,98,146);
+}
+
+#logo { /* Logo div styling */
+    margin-left: 175px;
+    font-family: 'Lobster', cursive;
+}
+
+.nav-wrapper .brand-logo img { /* Logo image styling */
+    height: 50px;
+    padding-top: 10px;
+}
+
+#location-list { /* Sets navbar right margin */
+    margin-right: 175px;
+}
+
+/* -----------------------------------------------  
+                STYLING FOR HOME PAGE
+   -----------------------------------------------*/
+
+#map { /*  */
     margin: 0px 0;
     padding: 0;
     height: 250px;
     width: 100%;
     float: left;
-  }
-
-.container {
-margin: 0 auto;
-max-width: 1280px;
-width: 70%;
 }
 
-.navbar {
-    width: 100%;
-    
-}
-
-.nav-wrapper {
-    background-color: rgb(240,98,146);
-    
-}
-
-.nav-wrapper .brand-logo img {
-    height: 50px;
-    padding-top: 10px;
-  }
-
-#logo {
-    margin: auto;
-    font-family: 'Lobster', cursive;
-}
-
-#link3 {
-    margin-right: 175px;
-}
-
-.carousel-item { 
+.carousel-item {  /* Carousel card dimensions */
     min-height: 350px; 
     min-width: 300px; 
 }
 
-#weather-card {
-    height: 250px;
+.card { /* Set card spacing */
+    margin: 2px;
 }
 
+#weather-card { /* Weather blurb dimensions */
+    height: 121px;
+}
+
+#ice-cream-card { /* Ice Cream blurb dimensions */
+    height: 121px;
+}
+
+/* -----------------------------------------------  
+            STYLING FOR LOGIN PAGE
+   -----------------------------------------------*/
+
+.input-field { /* set color of text input */
+    color: #909;
+} 
+
+::placeholder { /* set color of placeholder text */
+    color:    #909;
+ }
+
+ /* -----------------------------------------------  
+                MEDIA QUERIES
+   -----------------------------------------------*/
+
+ @media only screen and (max-width: 992px) {
+    #logo { /* allows logo to center align on small screens */
+        margin-left: 0px;
+        
+    }
+}

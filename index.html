@@ -13,24 +13,39 @@
         <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-database.js"></script>
+
     </head>
 
     <body>
-        <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#!">one</a></li>
-            <li><a href="#!">two</a></li>
-            <li><a href="#!">three</a></li>
-        </ul>
         <nav>
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a href="#!">one</a></li>
+                <li><a href="#!">two</a></li>
+                <li><a href="#!">three</a></li>
+            </ul>
+            <ul id="dropdown2" class="dropdown-content">
+                <li><a href="#!">one</a></li>
+                <li><a href="#!">two</a></li>
+                <li><a href="#!">three</a></li>
+            </ul>
             <div class="nav-wrapper">
-                <a id="logo" class="brand-logo left">
+                <a href="index.html" id="logo" class="brand-logo">
                     <img class="responsive-img" src="assets/images/localscoopsprinkles.png">
                     LocalScoop
                 </a>
+                <a href="#" id="links" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a id="link1" class="dropdown-button" href="#!" data-activates="dropdown1">Saved Locations<i class="material-icons right">arrow_drop_down</i></a></li>
-                    <li><a id="link2" href="#">Login</a></li>
-                    <li><a id="link3" href="#">Logout</a></li>
+                    <li><a id="login-button" href="login.html">Login</a></li>           
+                    <li><a id="logout-button" href="#">Logout</a></li>
+                    <li><a id="save-location" href="#">Save Location</a></li>
+                    <li><a id="location-list" class="dropdown-button" href="#!" data-activates="dropdown1">Saved Locations<i class="material-icons right">arrow_drop_down</i></a></li>  
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a id="login-button" href="login.html">Login</a></li>
+                    <li><a id="logout-button" href="#">Logout</a></li>
+                    <li><a id="save-location" href="#">Save Location</a></li>
+                    <li><a id="location-list" class="dropdown-button" href="#!" data-activates="dropdown2">Saved Locations<i class="material-icons right">arrow_drop_down</i></a></li>
+                    
                 </ul>
             </div>
         </nav>
@@ -51,6 +66,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col s4">
+                        <div id="ice-cream-card" class="card purple darken-1 z-depth-5">
+                            <div class="card-content white-text">
+                                <span class="card-title">Weather Blurb Here</span>
+                                <p>With some stuff here.</p>
+                            </div>
+                        </div>
+                    </div>
             </div>
         <div class="carousel">
             <a class="carousel-item card pink lighten-2 z-depth-5" href="#one!">
