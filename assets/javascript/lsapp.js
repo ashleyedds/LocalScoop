@@ -50,9 +50,9 @@ function initMap() {
       //Grab new longitude/latitue from moved marker
       function markerCoords(markerobject) {
         google.maps.event.addListener(markerobject, 'dragend', function (evt) {
-          infoWindow.setOptions({
-            content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
-          });
+          // infoWindow.setOptions({
+          //   content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
+          // });
 
           console.log("New latitude: " + evt.latLng.lat());
           console.log("New longitude: " + evt.latLng.lng());
@@ -63,7 +63,7 @@ function initMap() {
           runWeatherSearch(newLat, newLng);
           getIceCream(newLat, newLng);
 
-          infoWindow.open(map, markerobject);
+          // infoWindow.open(map, markerobject);
         });
 
         google.maps.event.addListener(markerobject, 'drag', function (evt) {
@@ -205,14 +205,119 @@ function runQuerySearch(query) {
 }
 
 
-$("#link2").on("click", function() {
+$("#save-location, #save-location-mobile").on("click", function () {
   var newCity = currentCity;
   var newLat = currentLat;
   var newLng = currentLng;
-  placeClick = true;
-  initMap();
+
   console.log(newCity);
-})
+  console.log(newLat);
+  console.log(newLng);
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: newLat, lng: newLng },
+    zoom: 8
+
+  });
+  infoWindow = new google.maps.InfoWindow;
+
+  var posNew = {
+    lat: newLat,
+    lng: newLng
+  };
+
+  var marker = new google.maps.Marker({
+    position: posNew,
+    map: map,
+    draggable: true,
+  });
+
+  //Grab new longitude/latitude from moved marker
+  function markerCoords(markerobject) {
+    google.maps.event.addListener(markerobject, 'dragend', function (evt) {
+      // infoWindow.setOptions({
+      //   content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
+      // });
+
+      console.log("New latitude: " + evt.latLng.lat());
+      console.log("New longitude: " + evt.latLng.lng());
+      // clearResults();
+      var newLat = evt.latLng.lat();
+      var newLng = evt.latLng.lng();
+      clearResults();
+      runWeatherSearch(newLat, newLng);
+      getIceCream(newLat, newLng);
+
+      // infoWindow.open(map, markerobject);
+    });
+
+    google.maps.event.addListener(markerobject, 'drag', function (evt) {
+      console.log("marker is being dragged");
+    });
+  }
+
+  //Call function to capture new location
+  markerCoords(marker);
+
+});
+
+$("#location-list, #location-list-mobile").on("click", function () {
+  var newCity = currentCity;
+  var newLat = currentLat;
+  var newLng = currentLng;
+
+  console.log(newCity);
+  console.log(newLat);
+  console.log(newLng);
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: newLat, lng: newLng },
+    zoom: 8
+
+  });
+  infoWindow = new google.maps.InfoWindow;
+
+  var posNew = {
+    lat: newLat,
+    lng: newLng
+  };
+
+  var marker = new google.maps.Marker({
+    position: posNew,
+    map: map,
+    draggable: true,
+  });
+
+  //Grab new longitude/latitude from moved marker
+  function markerCoords(markerobject) {
+    google.maps.event.addListener(markerobject, 'dragend', function (evt) {
+      // infoWindow.setOptions({
+      //   content: '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>'
+      // });
+
+      console.log("New latitude: " + evt.latLng.lat());
+      console.log("New longitude: " + evt.latLng.lng());
+      // clearResults();
+      var newLat = evt.latLng.lat();
+      var newLng = evt.latLng.lng();
+      clearResults();
+      runWeatherSearch(newLat, newLng);
+      getIceCream(newLat, newLng);
+
+      // infoWindow.open(map, markerobject);
+    });
+
+    google.maps.event.addListener(markerobject, 'drag', function (evt) {
+      console.log("marker is being dragged");
+    });
+  }
+
+  //Call function to capture new location
+  markerCoords(marker);
+
+});
+
+
 
 
 //Clears weather input
@@ -227,79 +332,6 @@ function clearResults() {
 window.onload = function() {
   initMap();
 }
-
-
-
-
-
-// function CenterControl(controlDiv, map) {
-
-//   // Set CSS for the control border.
-//   var controlUI = document.createElement('div');
-//   controlUI.style.backgroundColor = 'rgb(240,98,146)';
-//   controlUI.style.border = '2px solid #fff';
-//   controlUI.style.borderRadius = '3px';
-//   controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-//   controlUI.style.cursor = 'pointer';
-//   controlUI.style.marginBottom = '22px';
-//   controlUI.style.textAlign = 'center';
-//   controlUI.title = 'Scoop Again';
-//   controlDiv.appendChild(controlUI);
-
-//   // Set CSS for the control interior.
-//   var controlText = document.createElement('div');
-//   controlText.style.color = '#fff';
-//   controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-//   controlText.style.fontSize = '16px';
-//   controlText.style.lineHeight = '38px';
-//   controlText.style.paddingLeft = '5px';
-//   controlText.style.paddingRight = '5px';
-//   controlText.innerHTML = 'Scoop Again';
-//   controlUI.appendChild(controlText);
-
-//   // Setup the click event listeners: simply set the map to Chicago.
-//   controlUI.addEventListener('click', initMap());
-// }
-
-
-// function initMapNew(lat, lng) {
-//   var map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 6,
-//     center: { lat: "", lng: "" }
-//   });
-  
-
-//   var marker = new google.maps.Marker({
-//     map: map,
-//     // Define the place with a location, and a query string.
-//     place: {
-//       location: { lat: 35.8564364, lng: -78.8439157 },
-//       query: 'Google, Morrisville, NC'
-
-//     },
-//     // Attributions help users find your site again.
-//     attribution: {
-//       source: 'Google Maps JavaScript API',
-//       webUrl: 'https://developers.google.com/maps/'
-//     }
-//   });
-
-//   // Construct a new InfoWindow.
-//   var infoWindow = new google.maps.InfoWindow({
-//     content: 'Saved Place Name'
-//   });
-
-//   // Opens the InfoWindow when marker is clicked.
-//   marker.addListener('click', function () {
-//     infoWindow.open(map, marker);
-
-//   });
-//   var centerControlDiv = document.createElement('div');
-//   var centerControl = new CenterControl(centerControlDiv, map);
-
-//   centerControlDiv.index = 1;
-//   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-// }
 
 
 
