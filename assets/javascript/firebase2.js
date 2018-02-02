@@ -75,7 +75,7 @@ console.log(testValue);
  
 
 function createUserDiv(user){
-    delButton = $('<button>').addClass('btn').attr('id', 'delete-button').attr('value', postKey).attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).text('Delete');
+    delButton = $('<button>').addClass('btn').attr('id', 'delete-button').attr('value', postKey).attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).text('X');
    $('#dropdown1').append($('<li>').text(user.locationName).append(delButton));
     
 }  
@@ -151,7 +151,3 @@ $(document).on("click", "#delete-button", function(){
     
     );
 
-$(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-    });
