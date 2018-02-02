@@ -9,7 +9,7 @@
   };
   firebase.initializeApp(config);
 
-  //create a variable to reference the database
+//create a variable to reference the database
 const dbRef = firebase.database().ref('recentUserPush');
 
 //Capture button click
@@ -40,7 +40,7 @@ console.log("success");
 dbRef.on("child_added", function(snapshot) {
   // Log everything that's coming out of snapshot
   console.log(snapshot.val());
-  $("#full-member-list").append(createUserDiv(snapshot.val()));
+  $("#dropdown1").append(createUserDiv(snapshot.val()));
 }, function(err) {
   // Handle errors
   console.log("Error: ", err.code);
