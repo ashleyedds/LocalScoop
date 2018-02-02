@@ -117,6 +117,7 @@ $("#btnSignUp").on("click", e => {
 //add logout event if logged in
 $("#btnLogout").on("click", e =>{
     firebase.auth().signOut();
+    $("#dropdown1, #dropdown2").empty();
 });
 
 // add login event
