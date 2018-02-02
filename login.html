@@ -17,7 +17,18 @@
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-database.js"></script>
   </head>
 
-    <body>
+    <body>        
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+            </div>
+
         <nav>
             <ul id="dropdown1" class="dropdown-content">
                 <li><a href="#!">one</a></li>
@@ -84,7 +95,9 @@
 
                         <a id="btnLogin" class="waves-effect waves-light btn"><i class="material-icons right">person</i>Login</a>
                         <a id="btnSignUp" class="waves-effect waves-light btn"><i class="material-icons right">add</i>New User</a>
-                    
+                                <!-- Modal Trigger -->
+                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+                        
                     </div>
                   </div>
 
