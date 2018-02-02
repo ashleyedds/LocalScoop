@@ -7,6 +7,7 @@ var placeClick = false;
 
 $('.carousel').carousel();
 $(".dropdown-button").dropdown();
+$(".button-collapse").sideNav();
 
 function initMap() {
   var map, infoWindow;
