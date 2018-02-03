@@ -34,6 +34,16 @@ html, body { /* Set Background image */
     margin-right: 175px;
 }
 
+#delete-button {
+    position: fixed;
+    right: 9.5%;
+    color: red;
+}
+
+.location-item {
+    padding-left: 10px;
+}
+
 
 /* -----------------------------------------------  
                 STYLING FOR HOME PAGE
