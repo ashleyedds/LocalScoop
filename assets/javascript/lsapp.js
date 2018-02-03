@@ -117,7 +117,7 @@ function runWeatherSearch(lat, lon) {
 
 //Find ice cream at current location
 function getIceCream(initialLat, initialLng) {
-  
+  console.log(initialLat);
   $.ajax({
     type: "GET",
     headers: {
@@ -210,6 +210,14 @@ $("#save-location, #save-location-mobile").on("click", function () {
   var newLat = currentLat;
   var newLng = currentLng;
 
+  dbRef.push({
+
+    locationName : newCity,
+    longitude : newLng,
+    latitude : newLat,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
   console.log(newCity);
   console.log(newLat);
   console.log(newLng);
@@ -225,6 +233,7 @@ $("#save-location, #save-location-mobile").on("click", function () {
     lat: newLat,
     lng: newLng
   };
+  console.log(posNew);
 
   var marker = new google.maps.Marker({
     position: posNew,
@@ -258,18 +267,22 @@ $("#save-location, #save-location-mobile").on("click", function () {
 
   //Call function to capture new location
   markerCoords(marker);
+  infoWindow.open(map);
+  map.setCenter(posNew);
+
 
 });
 
-$("#location-list, #location-list-mobile").on("click", function () {
-  var newCity = currentCity;
-  var newLat = currentLat;
-  var newLng = currentLng;
+$(document).on("click", ".location-item", function () {
+  var newLat = parseFloat($(this).attr("lat-value"));
+  var newLng = parseFloat($(this).attr("long-value"));
 
-  console.log(newCity);
+  clearResults();
+  runWeatherSearch(newLat, newLng);
+  getIceCream(newLat, newLng);
   console.log(newLat);
   console.log(newLng);
-
+  var map, infoWindow;
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: newLat, lng: newLng },
     zoom: 8
@@ -314,6 +327,9 @@ $("#location-list, #location-list-mobile").on("click", function () {
 
   //Call function to capture new location
   markerCoords(marker);
+  infoWindow.open(map);
+  map.setCenter(posNew);
+      
 
 });
 

@@ -34,6 +34,7 @@ html, body { /* Set Background image */
     margin-right: 175px;
 }
 
+
 /* -----------------------------------------------  
                 STYLING FOR HOME PAGE
    -----------------------------------------------*/
@@ -49,6 +50,10 @@ html, body { /* Set Background image */
 .carousel-item {  /* Carousel card dimensions */
     min-height: 350px; 
     min-width: 300px; 
+}
+
+.carousel .carousel-item, img.responsive-img, video.responsive-video {
+    border-radius: 5px
 }
 
 .card { /* Set card spacing */
