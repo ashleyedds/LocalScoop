@@ -32,16 +32,18 @@ html, body { /* Set Background image */
 
 #location-list { /* Sets navbar right margin */
     margin-right: 175px;
+    width: 250px;
 }
 
 #delete-button {
-    position: relative;
     color: red;
-    right: 0;
+    float: right;
 }
 
 .location-item {
     padding-left: 10px;
+    padding-top: 10px;
+    clear: both;
 }
 
 
