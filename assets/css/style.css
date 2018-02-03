@@ -34,6 +34,7 @@ html, body { /* Set Background image */
     margin-right: 175px;
 }
 
+
 /* -----------------------------------------------  
                 STYLING FOR HOME PAGE
    -----------------------------------------------*/
@@ -44,6 +45,7 @@ html, body { /* Set Background image */
     height: 250px;
     width: 100%;
     float: left;
+    border-radius: 5px
 }
 
 .carousel-item {  /* Carousel card dimensions */
@@ -51,8 +53,13 @@ html, body { /* Set Background image */
     min-width: 300px; 
 }
 
+.carousel .carousel-item, img.responsive-img, video.responsive-video {
+    border-radius: 5px
+}
+
 .card { /* Set card spacing */
     margin: 2px;
+    border-radius: 5px;
 }
 
 #weather-card { /* Weather blurb dimensions */

@@ -77,13 +77,13 @@ console.log(testValue);
  
 
 function createUserDiv(user){
-    delButton = $('<button>').addClass('btn').attr('id', 'delete-button').attr('value', postKey).attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).text('Delete');
-   $('#dropdown1').append($('<li>').text(user.locationName).append(delButton));
+    delButton = $('<button>').addClass('btn').attr('id', 'delete-button').attr('value', postKey).text("x");
+    var listItem = $('<li>').text(user.locationName + "  ").addClass("location-item").attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).append(delButton);
+   $('#dropdown1').append(listItem);
     
 }  
 
 
-  //$("#submitEmployee").on("click", submitEmployee);
 
   // Firebase watcher .on("child_added")
   function getUserInput(){
@@ -128,6 +128,7 @@ $("#btnSignUp").on("click", e => {
 //add logout event if logged in
 $("#btnLogout").on("click", e =>{
     firebase.auth().signOut();
+    $("#dropdown1, #dropdown2").empty();
 });
 
 // add login event
@@ -163,7 +164,3 @@ $(document).on("click", "#delete-button", function(){
     
     );
 
-$(document).ready(function(){
-    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-    $('.modal').modal();
-    });
