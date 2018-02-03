@@ -120,7 +120,7 @@ function renderUserName(user){
 
 function getSignUpInput(){
     //get Login Elements
-    txtUserName = $("#txtSignUpUserName").val().trim();
+    //txtUserName = $("#txtSignUpUserName").val().trim();
     txtEmail = $("#txtSignUpEmail").val().trim();
     console.log(txtEmail);
     txtPassword = $("#txtSignUpPassword").val().trim();    
