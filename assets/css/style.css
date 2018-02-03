@@ -35,9 +35,9 @@ html, body { /* Set Background image */
 }
 
 #delete-button {
-    position: fixed;
-    right: 9.5%;
+    position: relative;
     color: red;
+    right: 0;
 }
 
 .location-item {
@@ -64,7 +64,8 @@ html, body { /* Set Background image */
 }
 
 .carousel .carousel-item, img.responsive-img, video.responsive-video {
-    border-radius: 5px
+    border-radius: 5px;
+    max-height: auto;
 }
 
 .card { /* Set card spacing */

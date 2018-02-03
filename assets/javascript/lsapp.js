@@ -9,14 +9,14 @@ $('.carousel').carousel();
 $(".dropdown-button").dropdown();
 $(".button-collapse").sideNav();
 
+
 function initMap() {
   var map, infoWindow;
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8
-    
-  });
-  infoWindow = new google.maps.InfoWindow;
+    });
+  // infoWindow = new google.maps.InfoWindow;
   
 
   // Determine current location, initial latitude/longitude
@@ -30,22 +30,29 @@ function initMap() {
       console.log("Initial latitude: " + pos.lat);
       console.log("Initial longitude: " + pos.lng);
 
+
       var initialLat = pos.lat;
       var initialLng = pos.lng;
-      // getState(initialLat, initialLng);
+      getState(initialLat, initialLng);
       clearResults();
       runWeatherSearch(initialLat, initialLng);
       getIceCream(initialLat, initialLng);
 
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: initialLat, lng: initialLng },
+        zoom: 8
+      });
+      
 
       //Create marker for current location, make it draggable
       var marker = new google.maps.Marker({
         position: pos,
         map: map,
+        title: "Test",
         draggable: true,
       });
 
-
+    
 
       //Grab new longitude/latitue from moved marker
       function markerCoords(markerobject) {
