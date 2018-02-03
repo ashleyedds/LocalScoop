@@ -83,8 +83,7 @@ console.log(testValue);
  //create a variable to reference the database
  
 
-
-function createUserDiv(user){
+function createLocDiv(user){
     delButton = $('<button>').addClass('btn-flat').attr('id', 'delete-button').attr('value', postKey).text("x");
 
     var listItem = $('<li>').text(user.locationName + "  ").addClass("location-item").attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).append(delButton);
