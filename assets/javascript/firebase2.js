@@ -20,11 +20,12 @@ var editActive = false;
 var accountEditActive = false;
 var testValue = "Oh my";
 var dbRef;
-
+var loginActive;
 
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
+        loginActive = true;
         userId = firebaseUser.uid;
         testValue = "Yes";
         console.log(userId);
@@ -66,6 +67,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         $('#btnLogout').addClass('hide');
         console.log('not logged in');
         testValue = "No";
+        loginActive = false;
     }
 });
 
@@ -97,6 +99,13 @@ function createUserDiv(user){
     const btnLogout =$("#btnLogout").val().trim();
 }
 
+function checkLoginRedirect() {
+    if (loginActive){
+        alert("redirect to index page");
+    }else{
+        alert("redirect to login page");
+    }
+}
 
 //add signup event
 $("#btnSignUp").on("click", e => {
@@ -114,6 +123,8 @@ $("#btnSignUp").on("click", e => {
     promise.catch(e => console.log(e.message));
     
 });
+
+
 //add logout event if logged in
 $("#btnLogout").on("click", e =>{
     firebase.auth().signOut();
@@ -124,14 +135,15 @@ $("#btnLogin").on("click",e => {
     event.preventDefault();
     //console.log("testing login");
     getUserInput();
-//Get email and pass
+    //Get email and pass
     const email = txtEmail.value;
     const pass = txtPassword.value;
     const auth = firebase.auth();
     //location.reload();
     const promise = auth.signInWithEmailAndPassword(email, pass);
     console.log("You have submitted a user.");
-
+    
+    promise.done(e => console.log("redirect to other page"));
     // this logs any errors and logs them to the console
     promise.catch(e => console.log(e.message));
     
