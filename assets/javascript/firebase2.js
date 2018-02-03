@@ -82,12 +82,6 @@ function createUserDiv(user){
 }  
 
 
-// $(document).on("click", ".location-item", function() {
-//     console.log("yes");
-//     var savedLat = $(this).attr("lat-value");
-//     console.log(savedLat);
-// })
-  //$("#submitEmployee").on("click", submitEmployee);
 
   // Firebase watcher .on("child_added")
   function getUserInput(){
