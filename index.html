@@ -22,7 +22,7 @@
 
             <ul id="dropdown2" class="dropdown-content">
             </ul>
-            
+        
             <div class="nav-wrapper">
                 <a href="index.html" id="logo" class="brand-logo">
                     <img class="responsive-img" src="assets/images/localscoopsprinkles.png">
@@ -30,10 +30,16 @@
                 </a>
                 <a href="#" id="links" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a id="login-button" href="login.html">Login</a></li>           
+                    <!--<li><a id="login-button" href="login.html">Login</a></li> -->          
                     <li><a id="btnLogout" href="#">Logout</a></li>
                     <li><a id="save-location" href="#">Save Location</a></li>
                     <li><a id="location-list" class="dropdown-button" href="#!" data-activates="dropdown1">Saved Locations<i class="material-icons right">arrow_drop_down</i></a></li>  
+                </ul>            
+                <a id="login-here" href="#!" data-activates="loginDropdown" class="dropdown-button">Login Here</a>
+                <ul id="loginDropdown" class="dropdown-content hide-on-med-and-down" style="width: 100px;">
+                        <li><a href="#modalLogin" class="waves-effect waves-light modal-trigger">Login</a></li>
+                        <li><a href="#modalSignUp" class="waves-effect waves-light modal-trigger">Sign Up</a></li>
+                        <li><a href="#modalEdit" id="getUsers" class="waves-effect waves-light modal-trigger" >Edit Profile</a></li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a id="login-button-mobile" href="login.html">Login</a></li>
@@ -42,6 +48,7 @@
                     <li><a id="location-list-mobile" class="dropdown-button" href="#!" data-activates="dropdown2">Saved Locations<i class="material-icons right">arrow_drop_down</i></a></li>
                     
                 </ul>
+
             </div>
         </nav>
 
@@ -97,6 +104,74 @@
                 </div>
             </a>
         </div>
+
+        <!-- Modal Structure -->
+        <div id="modalLogin" class="modal">
+                <div class="modal-content">
+                <h4>USER LOGIN</h4>
+                <div class="input-field col s8 offset-s2">
+                    <input placeholder="iloveicecream@LocalScoop.com" id="txtEmail" type="text" class="validate">
+                    <label for="email"></label>
+                </div>
+                <div class="input-field col s8 offset-s2">
+                    <input placeholder="Password" id="txtPassword" type="password" class="validate">
+                    <label for="password"></label>
+                </div>
+                </div>
+                <div class="modal-footer">
+                        <div class="col s12 center-align">
+                                
+                            <a id="btnLogin" class="waves-effect waves-light btn"><i class="material-icons right">person</i>Login</a>
+                            
+                        </div>
+                </div>
+            </div>
+
+            <!-- Modal Structure -->
+            <div id="modalSignUp" class="modal">
+                    <div class="modal-content">
+                    <h4>USER SIGN UP</h4>
+                    <div class="input-field col s8 offset-s2">
+                        <input placeholder="iloveicecream@LocalScoop.com" id="txtSignUpEmail" type="text" class="validate">
+                        <label for="email"></label>
+                    </div>
+                    <div class="input-field col s8 offset-s2">
+                        <input placeholder="Password" id="txtSignUpPassword" type="password" class="validate">
+                        <label for="password"></label>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                            <div class="col s12 center-align">
+                                <a id="btnSignUp" class="waves-effect waves-light btn"><i class="material-icons right">person_add</i>New User</a>
+                                
+                            </div>
+                    </div>
+                </div>
+
+            <!-- Modal Structure -->
+            <div id="modalEdit" class="modal">
+                    <div class="modal-content">
+                    <h4>EDIT PROFILE</h4>
+                    <div class="divider"></div>
+                    <div class="input-field col s8 offset-s2">
+                        
+                        <label for="username">User Name:</label>
+                        <input placeholder="Suzie Longbottom" id="txtDisplayName" type="text" class="validate">
+                        <a id="newUserName" class="waves-effect waves-light btn">Update User Name</a>
+                        </div>
+                    <div class="input-field col s8 offset-s2">
+                        
+                        <label for="email">Email:</label>
+                        <input placeholder="iloveicecream@LocalScoop.com" id="txtDisplayEmail" type="text" class="validate">
+                        <a id="newEmail" class="waves-effect waves-light btn">Update Email</a>
+                    </div>
+                    <div class="input-field col s8 offset-s2">
+                            <a id="newPwd" class="waves-effect waves-light btn">Update Password</a>
+                       
+                    </div>
+                    </div>
+                </div>
+
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCohcwU5j-Gu6Az6HVkUF0viow3lAyLZL8"></script>
