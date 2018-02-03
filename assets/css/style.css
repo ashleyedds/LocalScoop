@@ -46,6 +46,10 @@ html, body { /* Set Background image */
     clear: both;
 }
 
+i.left {
+    margin-left: 15px;
+}
+
 
 /* -----------------------------------------------  
                 STYLING FOR HOME PAGE
@@ -62,12 +66,17 @@ html, body { /* Set Background image */
 
 .carousel-item {  /* Carousel card dimensions */
     min-height: 350px; 
-    min-width: 300px; 
+    min-width: 275px; 
 }
 
 .carousel .carousel-item, img.responsive-img, video.responsive-video {
     border-radius: 5px;
-    max-height: auto;
+}
+
+.carousel .carousel-item>img {
+    max-height: 60%;
+    width: 100%;
+    overflow: hidden;
 }
 
 .card { /* Set card spacing */

@@ -102,9 +102,9 @@ function createUserDiv(user){
 
 function renderUserName(user){
     if(user){
-        $("#login-here").text("Welcome "+user+" !").append($("<span>").html("<i class='material-icons left'>menu</i>"));
+        $("#login-here").text("Welcome "+user+" !").append($("<span>").html("<i class='material-icons left'>account_circle</i>"));
         } else {
-        $("#login-here").text("Welcome New User !").append($("<span>").html("<i class='material-icons left'>menu</i>"));
+        $("#login-here").text("Welcome New User !").append($("<span>").html("<i class='material-icons left'>account_circle</i>"));
         }
 }
 
