@@ -230,6 +230,7 @@ $(document).on("click", "#newPwd", function(){
 
     auth.sendPasswordResetEmail(emailAddress).then(function() {
         alert("password reset email sent");
+        location.reload();
     }).catch(function(error) {
         // An error happened.
     });
