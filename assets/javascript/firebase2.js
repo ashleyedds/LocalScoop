@@ -50,6 +50,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             console.log(snapshot.key)
             postKey = snapshot.key
             $("#dropdown1").append(createLocDiv(snapshot.val(), postKey));
+            $("#dropdown2").append(createMobileDiv(snapshot.val(), postKey));
             $("#updateUserFields").append(createUserDiv(snapshot.val(), postKey));
         }, function(err) {
             // Handle errors
@@ -62,6 +63,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
             console.log(snapshot.key)
             postKey = snapshot.key
             $("#dropdown1").empty()
+            $("#dropdown2").empty();
             location.reload();
           }, function(err) {
             // Handle errors
@@ -85,9 +87,15 @@ console.log(testValue);
 
 function createLocDiv(user){
     delButton = $('<button>').addClass('btn-flat').attr('id', 'delete-button').attr('value', postKey).text("x");
-
     var listItem = $('<li>').text(user.locationName + "  ").addClass("location-item").attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).append(delButton);
    $('#dropdown1').append(listItem);
+    
+}
+
+function createMobileDiv(user){
+    delButton = $('<button>').addClass('btn-flat').attr('id', 'delete-button').attr('value', postKey).text("x");
+    var listItem = $('<li>').text(user.locationName + "  ").addClass("location-item").attr('loc-name', user.locationName).attr('lat-value', user.latitude).attr('long-value', user.longitude).append(delButton);
+   $('#dropdown2').append(listItem);
     
 }  
 
@@ -197,7 +205,6 @@ $(document).on("click", "#newUserName", function(){
   userCurrent.updateProfile({
     displayName : $("#txtDisplayName").val().trim()
   }).then(function(){
-    alert("Success");
     $('#modalEdit').modal('close');
     renderUserName(newName);
 });
@@ -208,7 +215,6 @@ $(document).on("click", "#newEmail", function(){
   newEmail =  $("#txtDisplayEmail").val().trim();
   console.log(newEmail);
   userCurrent.updateEmail(newEmail).then(function(){
-    alert("Success");
     $('#modalEdit').empty();
     $('#modalEdit').modal('close');
 });
@@ -221,7 +227,6 @@ $(document).on("click", "#newPwd", function(){
     var emailAddress = userCurrent.email;
     console.log(emailAddress);
     userCurrent.updatePassword(newPassword).then(function(){
-        alert("Success");
         $('#modalEdit').empty();
         $('#modalEdit').modal('close');
     }).catch(function(error) {
@@ -230,7 +235,6 @@ $(document).on("click", "#newPwd", function(){
 
 
     auth.sendPasswordResetEmail(emailAddress).then(function() {
-        alert("password reset email sent");
         location.reload();
     }).catch(function(error) {
         // An error happened.
